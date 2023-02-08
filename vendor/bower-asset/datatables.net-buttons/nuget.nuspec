@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <version>2.2.2</version>
+        <id>datatables.net-buttons</id>
+        <description>This is Buttons for DataTables</description>
+        <repository type="git" url="https://github.com/DataTables/Dist-DataTables-Buttons.git"/>
+        <authors>SpryMedia Ltd</authors>
+        <projectUrl>http://datatables.net</projectUrl>
+        <license type="expression">MIT</license>
+        <tags>Buttons  Column Visibility  csv  excel  pdf  print  Datatables jQuery table</tags>
+        <dependencies>
+            <dependency id="datatables.net" version="1.11.5"/>
+        </dependencies>
+        <contentFiles>
+            <files include="**/*" buildAction="Content"/>
+        </contentFiles>
+    </metadata>
+    <files>
+        <file src="js/buttons.colVis.js" target="content\Scripts"/>
+        <file src="js/buttons.colVis.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/buttons.colVis.min.js" target="content\Scripts"/>
+        <file src="js/buttons.colVis.min.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/buttons.flash.js" target="content\Scripts"/>
+        <file src="js/buttons.flash.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/buttons.flash.min.js" target="content\Scripts"/>
+        <file src="js/buttons.flash.min.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/buttons.html5.js" target="content\Scripts"/>
+        <file src="js/buttons.html5.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/buttons.html5.min.js" target="content\Scripts"/>
+        <file src="js/buttons.html5.min.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/buttons.print.js" target="content\Scripts"/>
+        <file src="js/buttons.print.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/buttons.print.min.js" target="content\Scripts"/>
+        <file src="js/buttons.print.min.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/dataTables.buttons.js" target="content\Scripts"/>
+        <file src="js/dataTables.buttons.js" target="contentFiles\any\any\wwwroot\js"/>
+        <file src="js/dataTables.buttons.min.js" target="content\Scripts"/>
+        <file src="js/dataTables.buttons.min.js" target="contentFiles\any\any\wwwroot\js"/>
+    </files>
+</package>
+

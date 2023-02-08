@@ -1,0 +1,58 @@
+{
+  "name": "sdelfi/yii2-widget-datatables",
+  "description": "DataTables widget for Yii2 with Bootstrap 4",
+  "type": "yii2-extension",
+  "minimum-stability": "stable",
+  "keywords": [
+    "yii2",
+    "extension",
+    "jquery",
+    "datatables",
+    "table",
+    "javascript",
+    "library",
+    "bootstrap4"
+  ],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/sdelfi/yii2-widget-datatables/issues?state=open",
+    "source": "https://github.com/sdelfi/yii2-widget-datatables"
+  },
+  "authors": [
+    {
+      "name": "Federico Nicolás Motta",
+      "email": "fedemotta@gmail.com"
+    },
+    {
+      "name": "Stanislav",
+      "email": "delfi89@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*",
+    "bower-asset/jquery": ">= 1.7.0",
+    "bower-asset/datatables.net": "*",
+    "bower-asset/datatables.net-bs4": "*",
+    "bower-asset/datatables.net-select-bs4": "*",
+    "bower-asset/datatables.net-buttons-bs4": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "sdelfi\\datatables\\": ""
+    }
+  },
+  "config": {
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "installer-paths": {
+        "bower-asset-library": "vendor/bower"
+      }
+    }
+  }
+}

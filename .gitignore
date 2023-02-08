@@ -1,36 +1,36 @@
-# phpstorm project files
-.idea
+# # phpstorm project files
+# .idea
 
-# netbeans project files
-nbproject
+# # netbeans project files
+# nbproject
 
-# zend studio for eclipse project files
-.buildpath
-.project
-.settings
+# # zend studio for eclipse project files
+# .buildpath
+# .project
+# .settings
 
-# windows thumbnail cache
-Thumbs.db
+# # windows thumbnail cache
+# Thumbs.db
 
-# composer vendor dir
-/vendor
+# # composer vendor dir
+# # /vendor
 
-# composer itself is not needed
-composer.phar
+# # composer itself is not needed
+# composer.phar
 
-# composer lock
-composer.lock
+# # composer lock
+# composer.lock
 
-# Mac DS_Store Files
-.DS_Store
+# # Mac DS_Store Files
+# .DS_Store
 
-# phpunit itself is not needed
-phpunit.phar
-# local phpunit config
-/phpunit.xml
+# # phpunit itself is not needed
+# phpunit.phar
+# # local phpunit config
+# /phpunit.xml
 
-tests/_output/*
-tests/_support/_generated
+# tests/_output/*
+# tests/_support/_generated
 
-#vagrant folder
-/.vagrant
+# #vagrant folder
+# /.vagrant
