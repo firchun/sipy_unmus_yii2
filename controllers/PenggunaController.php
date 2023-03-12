@@ -69,27 +69,35 @@ class PenggunaController extends \yii\web\Controller
     }
     public function actionTambahOperator()
     {
-        $model = new User();
         if (!Yii::$app->user->identity) {
             return $this->redirect('site/index');
         }
         $model = new User();
-        if ($model->load(Yii::$app->request->post())) {
+
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
             // form inputs are valid, do something here
             $model->username = $_POST['User']['npm'];
             $model->authKey = sha1(random_bytes(5));
             $model->accessToken = sha1(random_bytes(10));
+            $model->password = md5($_POST['User']['password']);
+            $model->id_status = 1;
+            $model->role = 2;
+            $model->id_jurusan = 0;
+            $model->created_at = date('Y-m-d H:i:s');
             //foto profil
             $file = UploadedFile::getInstance($model, 'file');
             if ($file) {
                 $model->foto = $_POST['User']['npm'] . $file->name;
-                $file->saveAs(Yii::$app->basePath . '/web/images/user/' . $_POST['User']['npm'] . $file->name);
+                $file->saveAs(yii::$app->basePath . '/web/images/user/' . $_POST['User']['npm'] . $file->name);
             }
-            if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Akun Operator berhasil dibuat');
-                return $this->redirect(['login']);
+            if ($model) {
+                $model->save(false);
+                Yii::$app->session->setFlash('success', 'Akun operator fakultas berhasil di buat');
+                return $this->redirect(['/pengguna/opeator']);
             } else {
-                Yii::$app->session->setFlash('error', 'Akun Operator gagal dibuat, cek kembali data anda');
+                $model->loadDefaultValues();
+                Yii::$app->session->setFlash('error', 'Akun operator fakultas gagal di buat, silahkan cek kembali data yang diinput');
             }
         }
         return $this->render('/admin/pengguna/tambah-operator', [

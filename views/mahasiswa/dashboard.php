@@ -95,7 +95,7 @@ if ($data_yudisium == null) :
 				<div class="col-12 col-xl-7">
 					<h4 class="text-danger font-weight-bolder">Daftar Yudisium Sekarang</h4>
 					<p class="text-dark-50 my-5 font-size-xl font-weight-bold">Silahkan melakukan pendaftaran pada tombol di bawah untuk menjadi peserta yudisium</p>
-					<a href="<?= Url::to(['/mahasiswa/yudisium']) ?>" class="btn btn-danger font-weight-bold py-2 px-6">Daftar</a>
+					<a href="<?= Url::to(['/mahasiswa/yudisium']) ?>" class="btn btn-danger btn-lg font-weight-bold py-2 px-6">Daftar</a>
 				</div>
 			</div>
 		</div>

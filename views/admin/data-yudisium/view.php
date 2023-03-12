@@ -49,7 +49,8 @@ if ($model->persetujuan == 0) {
                             <span class=" fs-6">
                                 Nama : <?= $model->user->nama_lengkap ?><br>
                                 NPM : <?= $model->user->npm ?><br>
-                                Fakultas : <?= $model->fakultas->fakultas ?><br>
+                                <!-- Fakultas : <?php //echo $model->fakultas->fakultas 
+                                                ?><br> -->
                                 Jurusan : <?= $model->jurusan->jurusan ?><br>
                                 NIK : <?= $model->user->nik ?><br>
                             </span>

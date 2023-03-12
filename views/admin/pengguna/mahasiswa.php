@@ -45,10 +45,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'foto',
                         'format' => 'html',
                         'value' => function ($data) {
-                            return Html::img(
-                                Yii::getAlias('@web') . '/images/user/' . $data['foto'],
-                                ['width' => '70px']
-                            );
+                            if ($data['foto'] != null) {
+                                return Html::img(
+                                    Yii::getAlias('@web') . '/images/user/' . $data['foto'],
+                                    ['width' => '70px']
+                                );
+                            } else {
+                                return Html::img(
+                                    Yii::getAlias('@web') . '/images/user/no-image.jpg',
+                                    ['width' => '70px']
+                                );
+                            }
                         },
                     ],
                     'nama_lengkap',
@@ -59,7 +66,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'fakultas.fakultas',
                     'jurusan.jurusan',
                     'status.status',
-
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'Aksi',

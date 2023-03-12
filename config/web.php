@@ -12,11 +12,11 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
-    'modules' => [
-        'operator' => [
-            'class' => 'app\modules\operator\Operator',
-        ],
-    ],
+    // 'modules' => [
+    //     'operator' => [
+    //         'class' => 'app\modules\operator\Operator',
+    //     ],
+    // ],
 
     'components' => [
         'request' => [
@@ -77,7 +77,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        // 'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';

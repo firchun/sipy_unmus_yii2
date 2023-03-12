@@ -21,14 +21,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['password', 'nama_lengkap', 'email', 'no_hp', 'role', 'id_status'], 'required'],
+            [['password', 'nama_lengkap', 'email', 'no_hp', 'username'], 'required'],
             [['id_fakultas', 'id_jurusan', 'role', 'status'], 'integer'],
             [['created_at'], 'safe'],
             [['username', 'password', 'authKey', 'accessToken', 'nama_lengkap', 'email', 'tempat_lahir', 'tanggal_lahir', 'foto'], 'string', 'max' => 255],
             [['no_hp'], 'string', 'max' => 15],
             [['jenis_kelamin'], 'string', 'max' => 10],
             [['npm'], 'string', 'max' => 12],
-            [['nik'], 'string', 'max' => 20],
+            [['nik'], 'string', 'max' => 12],
             [['id_fakultas'], 'exist', 'skipOnError' => true, 'targetClass' => Fakultas::class, 'targetAttribute' => ['id_fakultas' => 'id']],
             [['id_jurusan'], 'exist', 'skipOnError' => true, 'targetClass' => Jurusan::class, 'targetAttribute' => ['id_jurusan' => 'id']],
             [['role'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['role' => 'id']],
@@ -93,7 +93,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getDataYudisia()
+    public function getDataYudisium()
     {
         return $this->hasMany(DataYudisium::class, ['id_users' => 'id']);
     }
@@ -198,22 +198,22 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      * @param string $password password to validate
      * @return bool if password provided is valid for current user
      */
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
-    }
     // public function validatePassword($password)
     // {
-    //     return $this->password === md5($password);
+    //     return $this->password === $password;
     // }
-    // public function beforeSave($insert)
-    // {
-    //     $old = $this->password;
-    //     if ($old) {
-    //         $this->password = md5($this->password);
-    //     }
-    //     return parent::beforeSave($insert);
-    // }
+    public function validatePassword($password)
+    {
+        return $this->password === md5($password);
+    }
+    public function beforeSave($insert)
+    {
+        $old = $this->password;
+        if ($old) {
+            $this->password = md5($this->password);
+        }
+        return parent::beforeSave($insert);
+    }
     public function changePassword()
     {
         $user = $this->_user;

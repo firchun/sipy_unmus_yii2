@@ -6,11 +6,16 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use dosamigos\multiselect\MultiSelect;
 use mdm\widgets\GridInput;
+use yii\helpers\Url;
 
 $profil = User::findOne(['id' => Yii::$app->user->identity->id]);
 $dosen = Dosen::find()->all();
 ?>
 <!--begin::details View-->
+<div class="my-2">
+
+    <a href="<?= Url::to(['/mahasiswa/dashboard']) ?>" class="btn btn-danger">Kembali</a>
+</div>
 <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
     <!--begin::Card header-->
     <div class="card-header cursor-pointer">
@@ -61,7 +66,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
                 <div class="form-group row my-4">
@@ -77,7 +82,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
                 <div class="form-group row my-4">
@@ -93,7 +98,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
                 <div class="form-group row my-4">
@@ -109,7 +114,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
                 <div class="form-group row my-4">
@@ -125,7 +130,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
             </div>
@@ -143,7 +148,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
                 <div class="form-group row my-4">
@@ -159,7 +164,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
                 <div class="form-group row my-4">
@@ -175,7 +180,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
                 <div class="form-group row my-4">
@@ -191,7 +196,7 @@ $dosen = Dosen::find()->all();
                             </div>
 
                         </div>
-                        <span class="form-text text-muted">Ukuran file kurang dari 300 MB dan berbentuk PDF.</span>
+                        <span class="form-text text-muted">Ukuran file kurang dari 300 KB dan berbentuk PDF.</span>
                     </div>
                 </div>
             </div>
@@ -199,8 +204,10 @@ $dosen = Dosen::find()->all();
 
 
         <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
-        <div class="form-group my-4">
+        <div class="form-group my-4 text-center">
+            <button type="reset" class="btn btn-warning">Reset</button>
             <button type="submit" class="btn btn-primary">Simpan Data</button>
+
         </div>
 
         <?php ActiveForm::end(); ?>

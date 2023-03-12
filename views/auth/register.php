@@ -61,7 +61,7 @@ use yii\widgets\ActiveForm;
 									<i class="bi bi-pencil-fill fs-7"></i>
 									<!--begin::Inputs-->
 									<input type="file" accept=".png, .jpg, .jpeg" id="user-file" name="User[file]" />
-									<!-- <input type="hidden" name="User[file]" value=""> -->
+									<input type="hidden" name="User[file]" value="">
 									<!--end::Inputs-->
 								</label>
 								<!--end::Label-->
@@ -94,7 +94,7 @@ use yii\widgets\ActiveForm;
 								<span class="required">NIK</span>
 								<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
 							</label>
-							<input class="form-control form-control-lg form-control-solid" minlength="15" maxlength="20" type="text" placeholder="" autocomplete="off" id="user-nik" name="User[nik]" required />
+							<input class="form-control form-control-lg form-control-solid" minlength="10" maxlength="12" type="text" placeholder="" autocomplete="off" id="user-nik" name="User[nik]" required />
 						</div>
 						<!--end::Col-->
 					</div>
@@ -216,10 +216,6 @@ use yii\widgets\ActiveForm;
 							<option value="Wanita">Wanita</option>
 						</select>
 					</div>
-
-					<input type="hidden" id=" user-role" name="User[role]" value="3">
-					<input type="hidden" id=" user-id_status" name="User[id_status]" value="2">
-
 					<!--end::Input group=-->
 					<!--begin::Actions-->
 					<div class="text-center">

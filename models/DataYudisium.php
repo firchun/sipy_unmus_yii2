@@ -55,7 +55,7 @@ class DataYudisium extends \yii\db\ActiveRecord
             [['id_users', 'id_jurusan', 'krs', 'khs', 'transkrip', 'judul_skripsi', 'cover_skripsi', 'persetujuan_skripsi', 'pengesahan_skripsi', 'ijazah_terakhir', 'sk_bimbingan', 'ktp', 'ipk'], 'required'],
             [['id_users', 'id_jurusan'], 'integer'],
             [['judul_skripsi'], 'string'],
-            [['krs', 'khs', 'transkrip', 'cover_skripsi', 'persetujuan_skripsi', 'pengesahan_skripsi', 'ijazah_terakhir', 'sk_bimbingan', 'ktp', 'tanggal_yudisium', 'dosen_pendamping', 'dosen_penguji'], 'string', 'max' => 255],
+            [['krs', 'khs', 'transkrip', 'cover_skripsi', 'persetujuan_skripsi', 'pengesahan_skripsi', 'ijazah_terakhir', 'sk_bimbingan', 'ktp', 'tanggal_yudisium'], 'string', 'max' => 255],
             [['persetujuan', 'ipk'], 'string', 'max' => 12],
             [['id_users'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['id_users' => 'id']],
             [['id_jurusan'], 'exist', 'skipOnError' => true, 'targetClass' => Jurusan::class, 'targetAttribute' => ['id_jurusan' => 'id']],

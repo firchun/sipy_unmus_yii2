@@ -26,6 +26,7 @@ class MahasiswaController extends \yii\web\Controller
                 $this->redirect(['/admin/dashboard']);
             }
         endif;
+
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -66,7 +67,13 @@ class MahasiswaController extends \yii\web\Controller
     }
     public function actionAkun()
     {
-        return $this->render('akun');
+        if (yii::$app->user->identity->role != 3) {
+            $this->redirect(['/admin/dashboard']);
+        }
+        $profil = User::findOne(['id' => Yii::$app->user->identity->id]);
+        return $this->render('akun', [
+            'profil' => $profil
+        ]);
     }
     public function actionWisuda()
     {
@@ -74,8 +81,11 @@ class MahasiswaController extends \yii\web\Controller
     }
     public function actionYudisium()
     {
-        if (!Yii::$app->user->identity) {
+        $cek_data_yudisium = DataYudisium::find()->where('id_users', Yii::$app->user->identity->id);
+        if (!Yii::$app->user->identity || Yii::$app->user->identity->role != 3) {
             return $this->redirect('site/index');
+        } else if (Yii::$app->user->identity->role == 3 && $cek_data_yudisium != null) {
+            return $this->redirect('mahasiswa/data-yudisium');
         }
         $user = User::findOne(['id' => Yii::$app->user->identity->id]);
         $model = new DataYudisium();
@@ -83,7 +93,6 @@ class MahasiswaController extends \yii\web\Controller
 
             // form inputs are valid, do something here
             $model->id_users = Yii::$app->user->identity->id;
-            $model->id_fakultas = $user->id_fakultas;
             $model->id_jurusan = $user->id_jurusan;
             $model->persetujuan = '0';
             //berkas
@@ -133,10 +142,11 @@ class MahasiswaController extends \yii\web\Controller
                 $file_ijazah->saveAs(yii::$app->basePath . '/web/berkas/berkas-ijazah/' . 'ijazah-' . $user->npm . $file_ijazah->name);
             }
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Akun anda berhasil dibuat');
+                Yii::$app->session->setFlash('success', 'Berkas anda berhasil di upload');
                 return $this->redirect(['/mahasiswa/dosen']);
             } else {
-                Yii::$app->session->setFlash('error', 'Akun anda gagal dibuat, cek kembali data anda');
+                $model->loadDefaultValues();
+                Yii::$app->session->setFlash('error', 'berkas anda gagal untuk di upload');
             }
         }
 
@@ -154,9 +164,8 @@ class MahasiswaController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post())) {
             // form inputs are valid, do something here
             $model->id_users = Yii::$app->user->identity->id;
-            $model->id_fakultas = $user->id_fakultas;
             $model->id_jurusan = $user->id_jurusan;
-            $model->persetujuan = '0';
+            $model->persetujuan = 0;
             //berkas
             $file_krs = UploadedFile::getInstance($model, 'file_krs');
             $file_khs = UploadedFile::getInstance($model, 'file_khs');

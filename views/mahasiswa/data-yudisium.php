@@ -21,9 +21,7 @@ if ($data_yudisium->persetujuan == 0) {
 ?>
 <div class="d-flex flex-wrap flex-stack my-5">
     <!--begin::Heading-->
-    <h3 class="fw-bolder my-2">Data Yudisium
-
-    </h3>
+    <h3 class="fw-bolder my-2 ml-2">Data Yudisium</h3>
     <!--end::Heading-->
     <!--begin::Controls-->
     <div class="d-flex my-2">

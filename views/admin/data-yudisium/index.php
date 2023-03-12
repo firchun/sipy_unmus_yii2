@@ -29,9 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php echo $this->render('_search', ['model' => $searchModel]);
         ?>
-        <div class="my-3 ">
-            <a href="<?= Url::to(['/data-yudisium/cetak']) ?>" class="btn btn-success align-self-center">Perisapan Cetak</a>
-        </div>
+        <!-- <div class="my-3 ">
+            <a href="<?php //Url::to(['/data-yudisium/cetak']) 
+                        ?>" class="btn btn-success align-self-center">Perisapan Cetak</a>
+        </div> -->
 
         <div class="table-responsive">
 

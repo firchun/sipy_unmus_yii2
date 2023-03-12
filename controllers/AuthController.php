@@ -79,27 +79,36 @@ class AuthController extends \yii\web\Controller
             return $this->redirect('site/index');
         }
         $model = new User();
-        if ($model->load(Yii::$app->request->post())) {
+
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
             // form inputs are valid, do something here
             $model->username = $_POST['User']['npm'];
             $model->authKey = sha1(random_bytes(5));
             $model->accessToken = sha1(random_bytes(10));
             $model->password = md5($_POST['User']['password']);
+            $model->id_status = 1;
+            $model->role = 3;
             //foto profil
-
-            // $file = UploadedFile::getInstance($model, 'file');
-            // if ($file) {
-            //     $model->foto = $_POST['User']['npm'] . $file->name;
-            //     $file->saveAs(yii::$app->basePath . '/web/images/user/' . $_POST['User']['npm'] . $file->name);
-            // }
-
-            if ($model->save()) {
+            $file = UploadedFile::getInstance($model, 'file');
+            if ($file) {
+                $model->foto = $_POST['User']['npm'] . $file->name;
+                $file->saveAs(yii::$app->basePath . '/web/images/user/' . $_POST['User']['npm'] . $file->name);
+            }
+            if ($model) {
+                $model->save(false);
                 Yii::$app->session->setFlash('success', 'Akun anda berhasil dibuat');
                 return $this->redirect(['login']);
             } else {
+                $model->loadDefaultValues();
                 Yii::$app->session->setFlash('error', 'Akun anda gagal dibuat, cek kembali data anda');
             }
         }
+
+
+
+
+
         return $this->render('register', [
             'model' => $model,
         ]);

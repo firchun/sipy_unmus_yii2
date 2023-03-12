@@ -13,11 +13,11 @@ $dosen_pembimbing = DosenPembimbing::find()->where(['id_users' => Yii::$app->use
 $dosen_penguji = DosenPenguji::find()->where(['id_users' => Yii::$app->user->identity->id])->all();
 $data_yudisium = DataYudisium::findOne(['id_users' => Yii::$app->user->identity->id]);
 ?>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 <div class="d-flex flex-wrap flex-stack my-5">
     <!--begin::Heading-->
-    <h3 class="fw-bolder my-2">Data Dosen Pembimbing dan Penguji
-
-    </h3>
+    <h3 class="fw-bolder my-2 ml-10">Data Dosen Pembimbing dan Penguji</h3>
     <!--end::Heading-->
     <!--begin::Controls-->
     <div class="d-flex my-2">
@@ -30,29 +30,42 @@ $data_yudisium = DataYudisium::findOne(['id_users' => Yii::$app->user->identity-
     <div class="card-body">
         <div class="row">
             <div class="col-md-6 px-2">
+
                 <!-- form dosen pembimbing -->
                 <div class="my-2 border p-3">
                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                        <span class="required">Pilih Dosen Pembimbing</span>
-                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
-                    </label>
-                    <select class="form-select form-select-solid select2" data-kt-select2="true" data-allow-clear="true" data-placeholder="Pilih Dosen" id="DosenPembimbing-id_dosen" name="DosenPembimbing[id_dosen]" required>
-                        <option value="">Pilih Dosen</option>
-                        <?php
-                        foreach ($dosen as $d) : ?>
-                            <option value="<?= $d->id ?>"><?= $d->nama_lengkap ?> - <?= $d->NIP ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <input type="hidden" id="DosenPembimbing-id_users" name="DosenPembimbing[id_users]" value="<?= Yii::$app->user->identity->id ?>" />
-                    <input type="hidden" id="DosenPembimbing-id_data_yudisium" name="DosenPembimbing[id_data_yudisium]" value="<?= $data_yudisium->id ?>" />
-                    <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
+                    <div class="field">
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Pilih Dosen Pembimbing</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <table class="table table-bordered" id="dynamic_field">
+                            <tr>
+                                <td><select name="currnecy" aria-label="Select a Timezone" data-control="select2" data-placeholder="Select currency" class="form-select form-select-solid" id="DosenPembimbing-id_dosen" name="DosenPembimbing[id_dosen][]">
+                                        <option value="">Pilih Dosen</option>
+                                        <?php
+                                        foreach ($dosen as $d) : ?>
+                                            <option value="<?= $d->id ?>"><?= $d->nama_lengkap ?> - <?= $d->nip ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td><button type="button" name="add" id="add" class="btn btn-sm btn-secondary">+</button></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" id="DosenPembimbing-id_users" name="DosenPembimbing[id_users]" value="<?= Yii::$app->user->identity->id ?>" />
+                        <input type="hidden" id="DosenPembimbing-id_data_yudisium" name="DosenPembimbing[id_data_yudisium]" value="<?= $data_yudisium->id ?>" />
+                        <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
+                    </div>
+
                     <div class="form-group my-4">
                         <button type="submit" class="btn btn-sm btn-primary">Simpan Data</button>
                     </div>
 
                     <?php ActiveForm::end(); ?>
                 </div>
+                <!--begin::Separator-->
+                <!-- <div class="separator separator-dashed mb-8"></div> -->
+                <!--end::Separator-->
                 <!-- data dosen pembimbing -->
                 <div class="p-3">
                     <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -68,7 +81,7 @@ $data_yudisium = DataYudisium::findOne(['id_users' => Yii::$app->user->identity-
                                         <?= $dt_d->dosen->nama_lengkap ?>
                                     </td>
                                     <td>
-                                        <?= $dt_d->dosen->NIP ?>
+                                        <?= $dt_d->dosen->nip ?>
                                     </td>
 
                                     <td><a href="<?= Url::to(['delete1', 'id' => $dt_d->id]) ?>" class="btn btn-icon btn-bg-secondary btn-active-color-danger btn-sm me-1" data-confirm="Dosen Penguji akan di hapus pada daftar" data-method="POST">
@@ -97,13 +110,19 @@ $data_yudisium = DataYudisium::findOne(['id_users' => Yii::$app->user->identity-
                         <span class="required">Pilih Dosen Penguji</span>
                         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
                     </label>
-                    <select class="form-select form-select-solid select2" data-control="select2" data-kt-select2="true" data-allow-clear="true" data-placeholder="Pilih Dosen" id="DosenPenguji-id_dosen" name="DosenPenguji[id_dosen]" required>
-                        <option value="">Pilih Dosen</option>
-                        <?php
-                        foreach ($dosen as $d) : ?>
-                            <option value="<?= $d->id ?>"><?= $d->nama_lengkap ?> - <?= $d->NIP ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                    <table class="table table-bordered" id="dynamic_field_penguji">
+                        <tr>
+                            <td><select name="currnecy" aria-label="Select a Timezone" data-control="select2" data-placeholder="Select currency" class="form-select form-select-solid" id="DosenPenguji-id_dosen" name="DosenPenguji[id_dosen][]">
+                                    <option value="">Pilih Dosen</option>
+                                    <?php
+                                    foreach ($dosen as $d) : ?>
+                                        <option value="<?= $d->id ?>"><?= $d->nama_lengkap ?> - <?= $d->nip ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td><button type="button" name="add_penguji" id="add_penguji" class="btn btn-sm btn-secondary">+</button></td>
+                        </tr>
+                    </table>
 
                     <input type="hidden" id="DosenPenguji-id_users" name="DosenPenguji[id_users]" value="<?= Yii::$app->user->identity->id ?>" />
                     <input type="hidden" id="DosenPenguji-id_data_yudisium" name="DosenPenguji[id_data_yudisium]" value="<?= $data_yudisium->id ?>" />
@@ -129,7 +148,7 @@ $data_yudisium = DataYudisium::findOne(['id_users' => Yii::$app->user->identity-
                                         <?= $dt_p->dosen->nama_lengkap ?>
                                     </td>
                                     <td>
-                                        <?= $dt_p->dosen->NIP ?>
+                                        <?= $dt_p->dosen->nip ?>
                                     </td>
                                     <td><a href="<?= Url::to(['delete2', 'id' => $dt_p->id]) ?>" class="btn btn-icon btn-bg-secondary btn-active-color-danger btn-sm me-1" data-confirm="Dosen Penguji akan di hapus pada daftar" data-method="POST">
                                             <span class="svg-icon svg-icon-3">
@@ -153,8 +172,34 @@ $data_yudisium = DataYudisium::findOne(['id_users' => Yii::$app->user->identity-
 
     </div>
 </div>
-<script>
+<script type="text/javascript">
     $(document).ready(function() {
-        $('.select2').select2();
+        var i = 1;
+
+        $('#add').click(function() {
+            i++;
+            $('#dynamic_field').append('<tr id="row' + i + '" class="dynamic-added"><td><select name="currnecy" aria-label="Select a Timezone" data-control="select2" data-placeholder="Select currency" class="form-select form-select-solid" id="DosenPembimbing-id_dosen" name="DosenPembimbing[id_dosen][]"> <option value= ""> Pilih Dosen </option><?php foreach ($dosen as $d) : ?> <option value = "<?= $d->id ?>" > <?= $d->nama_lengkap ?> - <?= $d->nip ?> </option><?php endforeach; ?> </select></td> <td> <button type = "button" name = "remove"id = "' + i + '"class = "btn btn-sm btn-danger btn_remove" > X </button></td > </tr>');
+        });
+
+        $(document).on('click', '.btn_remove', function() {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id + '').remove();
+        });
+
+    });
+
+    $(document).ready(function() {
+        var i = 1;
+
+        $('#add_penguji').click(function() {
+            i++;
+            $('#dynamic_field_penguji').append('<tr id="row' + i + '" class="dynamic-added"><td><select name="currnecy" aria-label="Select a Timezone" data-control="select2" data-placeholder="Select currency" class="form-select form-select-solid" id="DosenPenguji-id_dosen" name="DosenPenguji[id_dosen][]"> <option value= ""> Pilih Dosen </option><?php foreach ($dosen as $d) : ?> <option value = "<?= $d->id ?>" > <?= $d->nama_lengkap ?> - <?= $d->nip ?> </option><?php endforeach; ?> </select></td> <td> <button type = "button" name = "remove"id = "' + i + '"class = "btn btn-sm btn-danger btn_remove_penguji" > X </button></td > </tr>');
+        });
+
+        $(document).on('click', '.btn_remove_penguji', function() {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id + '').remove();
+        });
+
     });
 </script>

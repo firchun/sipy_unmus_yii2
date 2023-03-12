@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <span class="required">NIK</span>
                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i>
                 </label>
-                <input class="form-control form-control-lg form-control-solid" minlength="15" maxlength="20" type="text" placeholder="" autocomplete="off" id="user-nik" name="User[nik]" required />
+                <input class="form-control form-control-lg form-control-solid" minlength="10" maxlength="12" type="text" placeholder="" autocomplete="off" id="user-nik" name="User[nik]" required />
             </div>
         </div>
 
