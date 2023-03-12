@@ -206,14 +206,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->password === md5($password);
     }
-    public function beforeSave($insert)
-    {
-        $old = $this->password;
-        if ($old) {
-            $this->password = md5($this->password);
-        }
-        return parent::beforeSave($insert);
-    }
+    // public function beforeSave($insert)
+    // {
+    //     $old = $this->password;
+    //     if ($old) {
+    //         $this->password = md5($this->password);
+    //     }
+    //     return parent::beforeSave($insert);
+    // }
     public function changePassword()
     {
         $user = $this->_user;

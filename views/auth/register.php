@@ -212,8 +212,8 @@ use yii\widgets\ActiveForm;
 						<label class="required fs-6 fw-bold mb-2">Jenis Kelamin</label>
 						<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Pilih Jenis Kelamin" id=" user-jenis_kelamin" name="User[jenis_kelamin]" required>
 							<option value="">Pilih Jenis Kelamin</option>
-							<option value="Pria">Pria</option>
-							<option value="Wanita">Wanita</option>
+							<option value="1">Pria</option>
+							<option value="2">Wanita</option>
 						</select>
 					</div>
 					<!--end::Input group=-->

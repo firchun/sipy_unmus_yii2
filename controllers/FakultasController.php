@@ -145,4 +145,14 @@ class FakultasController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function ActionApi()
+    {
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $data = Fakultas::find()->count();
+        return $this->render('/fakultas/api', [
+            'data' => $data
+        ]);
+    }
 }

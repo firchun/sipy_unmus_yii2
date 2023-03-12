@@ -38,6 +38,7 @@ class AuthController extends \yii\web\Controller
             if ($model->login()) {
                 return $this->goBack();
             } else {
+                // $model->loadDefaultValues();
                 Yii::$app->session->setFlash('error', 'Cek kembali NPM / NIP atau password anda');
             }
         }
@@ -58,6 +59,7 @@ class AuthController extends \yii\web\Controller
             if ($model->login()) {
                 return $this->goBack();
             } else {
+                $model->loadDefaultValues();
                 Yii::$app->session->setFlash('error', 'Cek kembali NIP / NIDN atau password anda');
             }
         }

@@ -74,11 +74,12 @@ foreach ($tahun as $th) {
 ?>
 <script>
 	var options = {
-		series: [44, 55, 41, 17, 15],
+		series: [<?= $sum_fak_teknik ?>, <?= $sum_fak_feb ?>, <?= $sum_fak_faperta ?>, <?= $sum_fak_fkip ?>, <?= $sum_fak_fisip ?>, <?= $sum_fak_hukum ?>],
 		chart: {
 			width: 380,
 			type: 'donut',
 		},
+		labels: ['Fakultas Teknik', 'Fakultas FEB', 'Fakultas Pertanian', 'Fakultas FKIP', 'Fakultas FISIP', 'Fakultas Hukum'],
 		plotOptions: {
 			pie: {
 				startAngle: -90,
